@@ -1,0 +1,29 @@
+# Datos pesados (no van a Git)
+Data/Raw/
+Data/Final/
+Data/VectorDB/
+
+# macOS
+.DS_Store
+**/.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Entornos virtuales
+venv/
+.venv/
+
+# Secretos
+.env
+
+# Material personal de Benja (no va al repo compartido)
+Contexto de la Materia/
+design_handoff_chatbot_despegar/
+Scripts/generate_samples.py
+Scripts/generate_samples_notebooklm.py
+Data/Samples/
+DEFENSA.md
+DESIGN_BRIEF.md

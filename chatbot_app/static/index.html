@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recomendador de Hoteles · Despegar NLP</title>
+
+  <link rel="stylesheet" href="/static/style.css?v=7" />
+</head>
+<body>
+  <div class="app">
+
+    <!-- ====================== HEADER ====================== -->
+    <header class="header">
+      <div class="header-brand">
+        <img class="logo-img" src="/static/logo-despegar.png" alt="Despegar" />
+        <span class="brand-divider" aria-hidden="true"></span>
+        <div class="brand-text">
+          <h1>Recomendador de Hoteles</h1>
+          <span class="brand-sub">NLP · Trabajo Final UdeSA</span>
+        </div>
+      </div>
+
+      <div class="header-stats" aria-label="Estadísticas del corpus">
+        <div class="stat"><strong>251k</strong><span>reviews</span></div>
+        <div class="stat"><strong id="destStatCount">67</strong><span>destinos</span></div>
+        <div class="stat"><strong>IA</strong><span>semántica</span></div>
+      </div>
+    </header>
+
+    <!-- ====================== SIDEBAR ====================== -->
+    <aside class="sidebar">
+
+      <section class="sidebar-section">
+        <h2 class="sidebar-title">Pruebas sugeridas</h2>
+        <div class="demo-list">
+          <button class="demo-btn" data-query="Quiero un hotel tranquilo en Río de Janeiro con linda vista al mar y buen desayuno">
+            <span class="demo-emoji">🌊</span>
+            <span class="demo-text">Hotel tranquilo en Río con vista al mar</span>
+          </button>
+          <button class="demo-btn" data-query="Busco un hotel familiar en Cancún con desayuno incluido y pileta para chicos">
+            <span class="demo-emoji">🏖️</span>
+            <span class="demo-text">Hotel familiar en Cancún con desayuno</span>
+          </button>
+          <button class="demo-btn is-error" data-query="Recomendame un hotel en Madrid">
+            <span class="demo-emoji">❌</span>
+            <span class="demo-text">Hotel en Madrid <em style="color:var(--text-soft);font-style:normal">(fuera de cobertura)</em></span>
+          </button>
+        </div>
+      </section>
+
+      <section class="sidebar-section destinations-section">
+        <div class="sidebar-title-row">
+          <h2 class="sidebar-title">Destinos cubiertos</h2>
+          <span class="badge" id="destCount">—</span>
+        </div>
+        <input
+          type="text"
+          class="dest-search"
+          id="destSearch"
+          placeholder="Buscar destino…"
+          autocomplete="off"
+        />
+        <ul class="dest-list" id="destList" aria-live="polite">
+          <li class="dest-empty">Cargando destinos…</li>
+        </ul>
+        <div class="status-pill" id="statusPill">
+          <span class="status-dot" id="statusDot"></span>
+          <span id="statusText">Conectando al servicio…</span>
+        </div>
+      </section>
+
+    </aside>
+
+    <!-- ====================== CHAT ====================== -->
+    <main class="chat">
+      <div class="chat-scroll" id="chatScroll">
+        <div class="chat-inner" id="chatInner">
+
+          <!-- Empty / welcome state (se reemplaza al primer mensaje) -->
+          <div class="welcome" id="welcome">
+            <div class="welcome-icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 21h18"/>
+                <path d="M5 21V7l8-4v18"/>
+                <path d="M19 21V11l-6-4"/>
+                <path d="M9 9v.01"/>
+                <path d="M9 12v.01"/>
+                <path d="M9 15v.01"/>
+                <path d="M9 18v.01"/>
+              </svg>
+            </div>
+            <div class="welcome-eyebrow">¡Hola! Soy tu recomendador de hoteles con IA.</div>
+            <h2>¿Qué tipo de hotel buscas?</h2>
+            <p>Contámelo en lenguaje natural. Analizo <strong>251.000 reviews reales</strong>
+              de viajeros con IA semántica y te sugiero las opciones más afines.</p>
+
+            <div class="welcome-tips">
+              <button class="welcome-tip" data-query="Hotel romántico en Cartagena de Indias con vista al mar para luna de miel">
+                <div class="tip-label">Romántico</div>
+                Cartagena, vista al mar, luna de miel
+              </button>
+              <button class="welcome-tip" data-query="Hotel barato y céntrico en Buenos Aires cerca del subte para 2 noches">
+                <div class="tip-label">Económico</div>
+                Buenos Aires, céntrico, cerca del subte
+              </button>
+              <button class="welcome-tip" data-query="Resort all inclusive en Punta Cana con playa privada y actividades">
+                <div class="tip-label">All inclusive</div>
+                Resort en playa con actividades
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ====================== COMPOSER ====================== -->
+      <div class="composer">
+        <div class="composer-inner">
+          <textarea
+            id="input"
+            rows="2"
+            placeholder="Ej: Quiero un hotel tranquilo en Río con vista al mar y buen desayuno…"
+            autofocus
+          ></textarea>
+          <button id="sendBtn" type="button" aria-label="Enviar mensaje">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M22 2L11 13"/>
+              <path d="M22 2l-7 20-4-9-9-4 20-7z"/>
+            </svg>
+            Enviar
+          </button>
+        </div>
+        <div class="composer-hint">
+          <span>
+            <span class="kbd"><kbd>Enter</kbd> enviar</span>
+            &nbsp;·&nbsp;
+            <span class="kbd"><kbd>Shift</kbd> + <kbd>Enter</kbd> nueva línea</span>
+          </span>
+          <span>⏱ El modelo puede tardar 10–30 s por respuesta</span>
+        </div>
+      </div>
+    </main>
+
+  </div>
+
+  <script src="/static/script.js?v=7"></script>
+</body>
+</html>

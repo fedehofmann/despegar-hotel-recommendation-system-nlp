@@ -1,0 +1,43 @@
+categorias:
+
+  - nombre: wifi
+    descripcion: comentarios sobre wifi, internet, conexión, señal o velocidad de internet
+
+  - nombre: vista
+    descripcion: comentarios sobre paisajes, panoramas o visuales
+
+  - nombre: ubicacion
+    descripcion: comentarios sobre localización, cercanía o accesibilidad
+
+  - nombre: ruido
+    descripcion: comentarios sobre sonidos, música, aislamiento o tranquilidad
+
+  - nombre: limpieza
+    descripcion: comentarios sobre higiene, aseo u orden
+
+  - nombre: transporte
+    descripcion: comentarios sobre transporte público, accesos o movilidad
+
+  - nombre: personal
+    descripcion: comentarios sobre atención, amabilidad o servicio del personal
+
+  - nombre: desayuno
+    descripcion: comentarios sobre desayuno o cafetería matutina
+
+  - nombre: restaurante
+    descripcion: comentarios sobre comida, restaurante, menú, almuerzo o cena
+
+  - nombre: habitacion
+    descripcion: comentarios sobre habitación, cuarto, cama, baño, muebles, tamaño, comodidad o estado de la habitación
+
+  - nombre: aire_acondicionado
+    descripcion: comentarios sobre temperatura, aire acondicionado o ventilación
+
+  - nombre: estacionamiento
+    descripcion: comentarios sobre parking, garage o estacionamiento
+
+  - nombre: seguridad
+    descripcion: comentarios sobre seguridad, zona segura o sensación de seguridad
+
+  - nombre: checkin
+    descripcion: comentarios sobre check-in, check-out, recepción o tiempos de espera
